@@ -96,18 +96,18 @@ def MainMenu():
 
     try:
 
-        with open(file_path, 'r' , newline='') as ReadCVSHandle:
+        with open(file_path, 'r' , newline='') as ReadCSVHandle:
             
-            ReadCVSFile = list(csv.reader(ReadCVSHandle))
+            ReadCSVFile = list(csv.reader(ReadCSVHandle))
 
-            if not ReadCVSFile:
+            if not ReadCSVFile:
 
                 global NoAccounts
                 NoAccounts = Label(GUI, text="You have no saved accounts yet!")
                 NoAccounts.pack()
 
 
-            for RowNumber, Row in enumerate(ReadCVSFile):
+            for RowNumber, Row in enumerate(ReadCSVFile):
 
                 ApplicationFromCSV = Row[0]
                 ApplicationLabel = Button(GUI, text=ApplicationFromCSV, width=25, command=lambda r=Row: ManageAccounts(r))
@@ -334,10 +334,10 @@ def CSVSave():
 
         MainMenu()
 
-    with open(file_path, 'a', newline='') as WriteCVSHandle:
+    with open(file_path, 'a', newline='') as WriteCSVHandle:
 
-        WriteCVSFile = csv.writer(WriteCVSHandle)
-        WriteCVSFile.writerow([Application, Username, Password])
+        WriteCSVFile = csv.writer(WriteCSVHandle)
+        WriteCSVFile.writerow([Application, Username, Password])
         InfoSavedLabel = Label(GUI, text="Your information is saved!")
         InfoSavedLabel.pack()
         InfoSavedButton = Button(GUI, text="OK", command=AllClear)
